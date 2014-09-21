@@ -2,9 +2,13 @@
 <html ng-app="application">
 	<head>
 		<title>django-angular-token-auth</title>
+
+		<base href="/" />
 	</head>
 
 	<body>
+		<div ng-include="'/static/templates/static/navbar.html'" ng-controller="NavbarController"></div>
+
 		<div class="ng-view"></div>
 
 		<script type="text/javascript" src="/static/bower_components/angular/angular.js"></script>
@@ -23,5 +27,6 @@
 
 		<script type="text/javascript" src="/static/javascripts/static/static.module.js"></script>
 		<script type="text/javascript" src="/static/javascripts/static/controllers/index.controller.js"></script>
+		<script type="text/javascript" src="/static/javascripts/static/controllers/navbar.controller.js"></script>
 	</body>
 </html>
