@@ -4,7 +4,8 @@ from django.views.generic import TemplateView
 
 from rest_framework import routers
 
-from authentication.views import UserViewSet
+from authentication.views import LoginAPIView, LogoutAPIView, \
+                                 RegisterAPIView, UserViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -17,10 +18,9 @@ urlpatterns = patterns('',
     	'rest_framework.urls', namespace='rest_framework'
     )),
 
-    # Placeholder routes
-    url(r'^api/v1/auth/login/', TemplateView.as_view()),
-    url(r'^api/v1/auth/logout/', TemplateView.as_view()),
-    url(r'^api/v1/auth/register/', TemplateView.as_view()),
+    url(r'^api/v1/auth/login/', LoginAPIView.as_view()),
+    url(r'^api/v1/auth/logout/', LogoutAPIView.as_view()),
+    url(r'^api/v1/auth/register/', RegisterAPIView.as_view()),
 
     url(r'^.*$', TemplateView.as_view(template_name='index.html')),
 )
