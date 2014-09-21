@@ -1,1 +1,3 @@
-window.angular.module('app', []);
+window.angular.module('application', [
+	'application.auth'
+]);
