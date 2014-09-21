@@ -3,3 +3,6 @@ static/bower_components
 
 # Python compilation files
 *.pyc
+
+# SQLite3 DB
+*.sqlite3
