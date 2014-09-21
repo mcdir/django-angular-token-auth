@@ -1,2 +1,5 @@
 # Bower
 static/bower_components
+
+# Python compilation files
+*.pyc
