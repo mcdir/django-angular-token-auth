@@ -1,7 +1,8 @@
 window.angular.module('application', [
 	'application.config',
 	'application.routes',
-	'application.auth'
+	'application.auth',
+	'application.static'
 ]);
 
 window.angular.module('application.config', []);
