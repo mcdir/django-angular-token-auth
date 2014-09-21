@@ -22,7 +22,7 @@ window.angular.module('application.auth.services').
 					if (response.token) {
 						Auth.setToken(response.token);
 					}
-					
+
 					deferred.resolve(response, status, headers, config);
 				}).error(function (response, status, headers, config) {
 					deferred.reject(response, status, headers, config);
@@ -35,11 +35,27 @@ window.angular.module('application.auth.services').
 				var deferred = $q.defer();
 
 				$http.post('/api/v1/auth/logout/', {
-
 				}).success(function (response, status, headers, config) {
 					Auth.deleteToken();
 
 					deferred.resolve(response, status, headers, config);
+				}).error(function (response, status, headers, config) {
+					deferred.reject(response, status, headers, config);
+				});
+
+				return deferred.promise;
+			},
+
+			register: function (user) {
+				var deferred = $q.defer();
+
+				$http.post('/api/v1/auth/register/', {
+					user: user
+				}).success(function (response, status, headers, config) {
+					Auth.login(user.username, user.password).
+						then(function (response, status, headers, config) {
+							deferred.resolve(response, status, headers, config);
+						});
 				}).error(function (response, status, headers, config) {
 					deferred.reject(response, status, headers, config);
 				});
