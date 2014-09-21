@@ -1,1 +1,3 @@
-window.angular.module('application.auth.services');
+window.angular.module('application.auth.services').
+	service('Auth', function () {
+	});
