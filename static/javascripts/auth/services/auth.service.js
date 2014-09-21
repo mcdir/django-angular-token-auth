@@ -54,7 +54,7 @@ window.angular.module('application.auth.services').
 				}).success(function (response, status, headers, config) {
 					Auth.login(user.username, user.password).
 						then(function (response, status, headers, config) {
-							deferred.resolve(response, status, headers, config);
+							window.location = '/';
 						});
 				}).error(function (response, status, headers, config) {
 					deferred.reject(response, status, headers, config);
