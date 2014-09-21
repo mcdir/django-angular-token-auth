@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     	'rest_framework.urls', namespace='rest_framework'
     )),
 
-    url(r'^api/v1/auth/login/', LoginAPIView.as_view()),
+    url(r'^api/v1/auth/login/', 'rest_framework_jwt.views.obtain_jwt_token'),
     url(r'^api/v1/auth/logout/', LogoutAPIView.as_view()),
     url(r'^api/v1/auth/register/', RegisterAPIView.as_view()),
 
