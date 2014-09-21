@@ -4,11 +4,10 @@ from django.views.generic import TemplateView
 
 from rest_framework import routers
 
-from authentication.views import GroupViewSet, UserViewSet
+from authentication.views import UserViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
-router.register(r'groups', GroupViewSet)
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
