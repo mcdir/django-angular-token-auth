@@ -13,8 +13,9 @@
 
     <div class="collapse navbar-collapse" id="collective-navbar">
       <ul class="nav navbar-nav navbar-right">
-        <li ng-hide="user"><a href="#" ng-click="login()">Login</a></li>
-        <li ng-hide="user"><a href="register">Register</a></li>
+        <li ng-hide="isLoggedIn"><a href="login">Login</a></li>
+        <li ng-hide="isLoggedIn"><a href="register">Register</a></li>
+		<li ng-show="isLoggedIn"><a href="#" ng-click="logout()">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
