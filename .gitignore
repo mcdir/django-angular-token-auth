@@ -6,3 +6,6 @@ static/bower_components
 
 # SQLite3 DB
 *.sqlite3
+
+# VIM auto-save files
+*.swp
