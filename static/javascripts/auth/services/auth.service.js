@@ -13,24 +13,6 @@ window.angular.module('application.auth.services').
 				$window.localStorage.removeItem('token');
 			},
 
-			getExpiration: function () {
-				return new Date($window.localStorage.getItem('token_expiration'));
-			},
-
-			setExpiration: function (expiration) {
-				$window.localStorage.setItem('token_expiration', expiration);
-			},
-
-			isExpired: function () {
-				return new Date() > Auth.getExpiration();
-			},
-
-			willExpireSoon: function () {
-				var now = new Date();
-
-				return !Auth.isExpired() && now - Auth.getExpiration() < 60 * 60 * 1000;
-			},
-
 			login: function (username, password) {
 				var deferred = $q.defer();
 
@@ -38,11 +20,7 @@ window.angular.module('application.auth.services').
 					username: username, password: password
 				}).success(function (response, status, headers, config) {
 					if (response.token) {
-						var expiration = new Date();
-						expiration.setTime(expiration.getTime() + (6 * 60 * 60 * 1000));
-
 						Auth.setToken(response.token);
-						Auth.setExpiration(expiration);
 					}
 
 					deferred.resolve(response, status, headers, config);
@@ -54,18 +32,8 @@ window.angular.module('application.auth.services').
 			},
 
 			logout: function () {
-				var deferred = $q.defer();
-
-				$http.post('/api/v1/auth/logout/', {
-				}).success(function (response, status, headers, config) {
-					Auth.deleteToken();
-
-					deferred.resolve(response, status, headers, config);
-				}).error(function (response, status, headers, config) {
-					deferred.reject(response, status, headers, config);
-				});
-
-				return deferred.promise;
+				Auth.deleteToken();
+				$window.location = '/';
 			},
 
 			register: function (user) {
@@ -78,6 +46,8 @@ window.angular.module('application.auth.services').
 						then(function (response, status, headers, config) {
 							window.location = '/';
 						});
+
+					deferred.resolve(response, status, headers, config);
 				}).error(function (response, status, headers, config) {
 					deferred.reject(response, status, headers, config);
 				});
